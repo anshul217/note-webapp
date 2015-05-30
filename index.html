@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+
+    <title>Note</title>
+
+    <style>
+      body {
+      background: url(back.jpg);
+      }
+      
+      #Head{
+padding:10px;
+border:1px ;
+opacity: .5;
+
+font-size:15px ;
+font-style: bold;
+background-color:black ;
+
+}
+      #headtext{
+        
+        color:white;
+        opacity:1;
+        font:bold;
+      }
+      
+    </style>
+
+    <!-- Inline scripts are forbidden in Firefox OS apps (CSP restrictions),
+         so we use a script file. -->
+    <script src="app.js" defer></script>
+    <script>
+      function gotoadd(){
+          window.location.assign("add.html");
+            
+        
+      }
+      function del(keyy){
+        alert(keyy);
+        localStorage.removeItem(keyy);
+        
+        
+      }
+        function saveText(){
+         
+
+          var c=new Date();
+          var aa=c.toString();
+          var a=aa.slice(0,25);
+
+          document.getElementById("test").innerHTML = localStorage.getItem(a);
+          for(i=0;i<localStorage.length;i++)
+            {
+              key=localStorage.key(localStorage.length-i-1);
+              var b=key;
+              value=localStorage.getItem(key);
+              document.getElementById("test").innerHTML +="<br>"+key+"-->"+ value.slice(0,9)+"<input type='button' name='del' id='"+b+"' value='del' onclick='del(this.id)'/><br><hr>";
+            }
+      }
+      
+    </script>
+
+  </head>
+
+  <body>
+    <!-- This code is in the public domain. Enjoy! -->
+    <div id ="Head">
+      <div id="headtext">
+        My Note App</div>
+    </div>
+    <table width="100%">
+    <td width="100%">
+     
+    
+      <tr><td><input type="button" value="Add Note" onclick="javascript:gotoadd();"/> </td><td><input align="left" type="button" value="Show"  onclick="javascript:saveText();"/></td></tr>      
+      <tr><td>
+
+      
+        <p id="test"></p>
+           
+
+          </td></tr>
+      </td>
+    </table>
+  </body>
+
+</html>
